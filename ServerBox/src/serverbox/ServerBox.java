@@ -42,14 +42,14 @@ public class ServerBox {
                 InputStream is = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(is);
                 BufferedReader br = new BufferedReader(isr);
-                String number = br.readLine();
-                System.out.println("Message received from client is "+number);
+                String message = br.readLine();
+                System.out.println("Message received from client is "+message);
  
                 //Multiplying the number by 2 and forming the return message
                 String returnMessage;
                 try
                 {
-                    int numberInIntFormat = Integer.parseInt(number);
+                    int numberInIntFormat = Integer.parseInt(message);
                     int returnValue = numberInIntFormat*2;
                     returnMessage = String.valueOf(returnValue) + "\n";
                 }
