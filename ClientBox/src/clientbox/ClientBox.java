@@ -39,7 +39,7 @@ public class ClientBox {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
  
-            String commandMessage = ClientMessage.listMessage("otniel");
+            String commandMessage = ClientMessage.logoutMessage();
  
             String sendMessage = commandMessage + "\n";
             bw.write(sendMessage);
