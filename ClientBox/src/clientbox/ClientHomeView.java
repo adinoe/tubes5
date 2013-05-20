@@ -10,7 +10,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -24,30 +26,34 @@ public class ClientHomeView extends javax.swing.JFrame {
     
     private JLabel _label;
     private static final int MAX_CHECKS = 30;
+    private ArrayList<JCheckBox> c = new ArrayList<JCheckBox>();
     public ClientHomeView() {
         initComponents();
-        JCheckBox checkBox;
-        Random r = new Random();
         
-        JPanel checkPanel = new JPanel(new GridLayout(0, 1));
-        _label = new JLabel("You selected nothing");
-        checkPanel.add(_label);
-
-        for (int i = 0; i < MAX_CHECKS; i++) {
-            StringBuilder sb = new StringBuilder();
-         
-            for (int j = 0; j < 3; j++) {
-                Integer temp = (r.nextInt()) % 100;
-                sb.append(temp).append(" ");
-            }
-
-            checkBox = new JCheckBox(sb.toString().trim());
-            checkBox.setName("CheckBox" + i);
-         
-            checkPanel.add(checkBox);
+        JCheckBox checkBox = new JCheckBox("Test"); 
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(new GridLayout(0, 1, 10, 10));
+        
+        JScrollPane checkBoxPanel = new JScrollPane(jPanel);
+        checkBoxPanel.setBounds(20, 150, 600, 400);
+        for(int i = 0; i < 30; i++){
+            c.add(new JCheckBox("Item "+i));
         }
-
-        add(checkPanel);
+        
+        for(int i = 0; i < 30; i++){
+            checkBox.setBounds(20, 30*i+50, 100, 30);
+            checkBox.setName("checkBox"+i);
+            checkBox.setVisible(true);
+            checkBoxPanel.add(checkBox);
+            
+            c.get(i).setBounds(20,30*i,100,30);
+            c.get(i).setVisible(true);
+            jPanel.add(c.get(i));
+        }
+        
+        checkBoxPanel.setAutoscrolls(true);
+        checkBoxPanel.setVisible(true);
+        this.add(checkBoxPanel);
     }
 
     /**
