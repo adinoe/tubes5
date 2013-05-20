@@ -120,8 +120,8 @@ public class ListTask {
         int tempIdTask;
          while (i<(list.size()))
         {
-            tempIdTask = list.get(i).getIdTask();
-            temp = temp + list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() +';';
+            //tempIdTask = list.get(i).getIdTask();
+            temp = temp +list.get(i).getIdTask()+ '#'+ list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() +';';
             i++;
         }
         return temp;

@@ -4,6 +4,7 @@
  */
 package serverbox;
 
+import Entity.Task;
 import java.util.ArrayList;
 import Model.Login;
 import Model.ListTask;
@@ -43,7 +44,10 @@ public class MessageHandler {
         }
         else if(l.get(0).equals("list")){
             //action list task
-            message = "list";
+            ListTask listTask = new ListTask();
+            ArrayList<Task> sesuatucuk = ListTask.getTaskAll(ListTask.getIdUser(l.get(1).toString()));
+            String msg = ListTask.convertTaskToString(sesuatucuk);
+            message = msg;
         }
         else if(l.get(0).equals("post")){
             //action post changes

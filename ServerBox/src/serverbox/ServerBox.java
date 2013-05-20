@@ -49,6 +49,7 @@ public class ServerBox {
                 //Multiplying the number by 2 and forming the return message
                 ArrayList command = MessageHandler.parseMessage(message);
                 String returnMessage = MessageHandler.runCommand(command)+"\n";
+                System.out.println(returnMessage);
                 /*try
                 {
                     int numberInIntFormat = Integer.parseInt(message);
