@@ -5,6 +5,10 @@
 package serverbox;
 
 import java.util.ArrayList;
+import Model.Login;
+import Model.ListTask;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,11 +24,18 @@ public class MessageHandler {
         return temp;
     }
     
-    public static String runCommand(ArrayList l){
+    public static String runCommand(ArrayList l) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
         String message = " failed";
         if(l.get(0).equals("login")){
             //action login
-            message = "login action";
+            boolean isExist = false;
+            isExist = Login.isUserExist(l.get(1).toString(), l.get(2).toString());
+            if(isExist){
+                message = "login successfull";
+            }
+            else{
+                message = "login failed";
+            }
         }
         else if(l.get(0).equals("logout")){
             //action logout
