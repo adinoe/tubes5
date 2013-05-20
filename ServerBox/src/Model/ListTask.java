@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Entity.Task;
+import Entity.User;
 import java.util.ArrayList;
 import util.DbConfig;
 /**
@@ -45,6 +46,19 @@ public class ListTask {
       //  System.out.println("id_user ="+user);
         return user;
     }
+     public static String getUsernameUser(int id_user) throws ClassNotFoundException, SQLException
+     {
+         String temp = null;
+         openDatabase();
+         String query = "SELECT username FROM user WHERE id_user='"+id_user+"'";
+         ResultSet rs = db.getStatement().executeQuery(query);
+        while(rs.next())
+        {
+            temp = rs.getString("username");
+        }
+        closeDatabase();
+        return temp;
+     }
      public static ArrayList<Task> getTaskAll(int id_user) throws ClassNotFoundException, SQLException
     {
         ArrayList<Task> creator = getTaskCreator(id_user);
@@ -98,7 +112,7 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
-    // mendapatkan id_task dimana user menjadi assignee di task tersebut
+    // mendapatkan id_task dimana user yang login menjadi assignee di task tersebut
     public static ArrayList<AssigneeTask> getIdAssignee(int id_user) throws ClassNotFoundException, SQLException
     {
         openDatabase();
@@ -115,8 +129,27 @@ public class ListTask {
         return temp;
     }
    
+    // mendapatkan id_user dari user2 yang termasuk assignee dalam suatu task tertentu
+    public static String getAssigneeMember (int id_task ) throws ClassNotFoundException, SQLException
+    {
+        openDatabase();
+        String query = "SELECT id_user FROM assignee_task WHERE id_task='"+id_task+"'";
+        ResultSet rs = db.getStatement().executeQuery(query);
+        String temp="";
+        while (rs.next())
+        {
+            temp = temp + getUsernameUser(rs.getInt("id_user")) + ",";
+        }
+        return temp;
+    }
+    public static String getTitleCategory(int id_category)
+    {
+        String temp=null;
+        String query = " SELECT title FROM category WHERE id_category='"+id_category+"'";
+        return temp;
+    }
     
-    public static String convertTaskToString (ArrayList<Task> list)
+    public static String convertTaskToString (ArrayList<Task> list) throws ClassNotFoundException, SQLException
     {
         String temp = "";
         int i = 0;
@@ -124,7 +157,16 @@ public class ListTask {
          while (i<(list.size()))
         {
             //tempIdTask = list.get(i).getIdTask();
-            temp = temp +list.get(i).getIdTask()+ '#'+ list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() + ';';
+            temp = temp + 
+                   list.get(i).getIdTask()+ '#'+ 
+                   list.get(i).getTitle() + '#' + 
+                   list.get(i).getDeadline() + '#' + 
+                   list.get(i).getDescription() + '#' + 
+                   list.get(i).getStatus() + '#' + 
+                   list.get(i).getTags() + '#' + 
+                   list.get(i).getIdCategory() + '#' +
+                   getUsernameUser(list.get(i).getIdUser()) + '#' + 
+                   getAssigneeMember(list.get(i).getIdTask()) +';';
             i++;
         }
         return temp;
