@@ -113,9 +113,24 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
+    public static String convertTaskToString (ArrayList<Task> list)
+    {
+        String temp = "";
+        int i = 0;
+        int tempIdTask;
+         while (i<(list.size()))
+        {
+            tempIdTask = list.get(i).getIdTask();
+            temp = temp + list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() +';';
+            i++;
+        }
+        return temp;
+    }
      public static void main(String[] args) throws ClassNotFoundException, SQLException
     {
         ArrayList<Task> sesuatucuk = getTaskAll(3);
+        String message = convertTaskToString(sesuatucuk);
+        System.out.print(message);
     }
     
 }
