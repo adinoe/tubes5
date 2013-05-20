@@ -139,6 +139,11 @@ public class TaskListPanel extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton2.setText("Log Out");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel1.setText("List Task");
@@ -168,6 +173,20 @@ public class TaskListPanel extends javax.swing.JPanel {
                 .addContainerGap(403, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ClientBox c = new ClientBox();
+        //c.postMessage("localhost", 25000 , ClientMessage.loginMessage(jTextField1.getText(), jTextField2.getText()));
+        String m = c.run("localhost",25000, ClientMessage.logoutMessage());
+        System.out.println("Pesan "+m);
+        if(m.equals("logout action")){
+            LoginPanel p = new LoginPanel();
+            ClientMain.removePanel(this);
+            ClientMain.changePanel(p);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
