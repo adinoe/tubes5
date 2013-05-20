@@ -39,9 +39,9 @@ public class ClientBox {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
  
-            String number = "4";
+            String commandMessage = ClientMessage.listMessage("otniel");
  
-            String sendMessage = number + "\n";
+            String sendMessage = commandMessage + "\n";
             bw.write(sendMessage);
             bw.flush();
             System.out.println("Message sent to the server : "+sendMessage);

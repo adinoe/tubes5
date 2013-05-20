@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,8 +47,9 @@ public class ServerBox {
                 System.out.println("Message received from client is "+message);
  
                 //Multiplying the number by 2 and forming the return message
-                String returnMessage;
-                try
+                ArrayList command = MessageHandler.parseMessage(message);
+                String returnMessage = MessageHandler.runCommand(command)+"\n";
+                /*try
                 {
                     int numberInIntFormat = Integer.parseInt(message);
                     int returnValue = numberInIntFormat*2;
@@ -58,14 +60,30 @@ public class ServerBox {
                     //Input was not a number. Sending proper message back to client.
                     returnMessage = "Please send a proper number\n";
                 }
+                * 
+                */
+                
+                /*OutputStream os1 = socket.getOutputStream();
+                OutputStreamWriter osw1 = new OutputStreamWriter(os1);
+                BufferedWriter bw1 = new BufferedWriter(osw1);
+
+                String number = "5";
+
+                String sendMessage = number + "\n";
+                bw1.write(sendMessage);
+                bw1.flush();
+                * 
+                */
  
                 //Sending the response back to the client.
                 OutputStream os = socket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
                 BufferedWriter bw = new BufferedWriter(osw);
                 bw.write(returnMessage);
-                System.out.println("Message sent to the client is "+returnMessage);
+                //System.out.println("Message sent to the client is "+returnMessage);
                 bw.flush();
+                
+                
             }
         }
         catch (Exception e)
