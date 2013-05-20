@@ -98,6 +98,7 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
+    // mendapatkan id_task dimana user menjadi assignee di task tersebut
     public static ArrayList<AssigneeTask> getIdAssignee(int id_user) throws ClassNotFoundException, SQLException
     {
         openDatabase();
@@ -113,6 +114,8 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
+   
+    
     public static String convertTaskToString (ArrayList<Task> list)
     {
         String temp = "";
@@ -121,7 +124,7 @@ public class ListTask {
          while (i<(list.size()))
         {
             //tempIdTask = list.get(i).getIdTask();
-            temp = temp +list.get(i).getIdTask()+ '#'+ list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() +';';
+            temp = temp +list.get(i).getIdTask()+ '#'+ list.get(i).getTitle() + '#' + list.get(i).getDeadline() + '#' + list.get(i).getDescription() + '#' + list.get(i).getStatus() + '#' + list.get(i).getTags() + ';';
             i++;
         }
         return temp;
