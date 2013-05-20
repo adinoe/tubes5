@@ -4,6 +4,7 @@
  */
 package clientbox;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 /**
  *
@@ -25,30 +26,70 @@ public class ClientHomeView extends javax.swing.JFrame {
      */
     
     private JLabel _label;
+    private JTable table;
     private static final int MAX_CHECKS = 30;
     private ArrayList<JCheckBox> c = new ArrayList<JCheckBox>();
+    private ArrayList<JLabel> title = new ArrayList<JLabel>();
+    private ArrayList<JLabel> deadline = new ArrayList<JLabel>();
+    private ArrayList<JLabel> description = new ArrayList<JLabel>();
+    private ArrayList<JLabel> tags = new ArrayList<JLabel>();
+    private ArrayList<JLabel> author = new ArrayList<JLabel>();
+    private ArrayList<JLabel> header = new ArrayList<JLabel>();
     public ClientHomeView() {
         initComponents();
-        
         JCheckBox checkBox = new JCheckBox("Test"); 
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new GridLayout(0, 1, 10, 10));
+        jPanel.setLayout(new GridLayout(0, 6, 10, 10));
         
         JScrollPane checkBoxPanel = new JScrollPane(jPanel);
-        checkBoxPanel.setBounds(20, 150, 600, 400);
-        for(int i = 0; i < 30; i++){
-            c.add(new JCheckBox("Item "+i));
+        header.add(new JLabel("Title"));
+        header.add(new JLabel("Deadline"));
+        header.add(new JLabel("Description"));
+        header.add(new JLabel("Tags"));
+        header.add(new JLabel("Author"));
+        header.add(new JLabel("Status"));
+        for(int i = 0; i < 6; i++){
+            header.get(i).setBackground(Color.red);
+            jPanel.add(header.get(i));
         }
         
-        for(int i = 0; i < 30; i++){
+        checkBoxPanel.setBounds(20, 80, 900, 550);
+        // Create columns names
+	
+        for(int i = 0; i < 20; i++){
+            c.add(new JCheckBox("Item "+i));
+            title.add(new JLabel("Label"+i));
+            deadline.add(new JLabel("Label"+i));
+            description.add(new JLabel("Label"+i));
+            tags.add(new JLabel("Label"+i));
+            author.add(new JLabel("Label"+i));
+        }
+        
+        for(int i = 0; i < 20; i++){
             checkBox.setBounds(20, 30*i+50, 100, 30);
             checkBox.setName("checkBox"+i);
             checkBox.setVisible(true);
             checkBoxPanel.add(checkBox);
             
-            c.get(i).setBounds(20,30*i,100,30);
+            c.get(i).setBounds(20,20*i,100,30);
             c.get(i).setVisible(true);
+            title.get(i).setBounds(20,30*i,200,30);
+            title.get(i).setVisible(true);
+            jPanel.add(title.get(i));
+            deadline.get(i).setBounds(20,30*i,200,30);
+            deadline.get(i).setVisible(true);
+            jPanel.add(deadline.get(i));
+            description.get(i).setBounds(20,30*i,200,30);
+            description.get(i).setVisible(true);
+            jPanel.add(description.get(i));
+            tags.get(i).setBounds(20,30*i,200,30);
+            tags.get(i).setVisible(true);
+            jPanel.add(tags.get(i));
+            author.get(i).setBounds(20,30*i,200,30);
+            author.get(i).setVisible(true);
+            jPanel.add(author.get(i));
             jPanel.add(c.get(i));
+            
         }
         
         checkBoxPanel.setAutoscrolls(true);
@@ -70,6 +111,8 @@ public class ClientHomeView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 700));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel1.setText("List Task");
@@ -102,7 +145,7 @@ public class ClientHomeView extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
 
         pack();
