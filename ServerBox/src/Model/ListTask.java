@@ -194,7 +194,7 @@ public class ListTask {
     {
         ArrayList<Task> sesuatucuk = getTaskAll(3);
         String message = convertTaskToString(sesuatucuk);
-        updateStatus(1,"Completed");
+        //updateStatus(1,"Completed");
         System.out.print(message);
     }
     
