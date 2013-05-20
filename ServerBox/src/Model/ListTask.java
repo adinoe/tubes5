@@ -21,18 +21,18 @@ import util.DbConfig;
  */
 public class ListTask {
      public static DbConfig db;
-    
+    // membuka koneksi ke database
     public static void openDatabase() throws ClassNotFoundException, SQLException
     {
         db = new DbConfig();
         db.createConnection();
     }
-    
+    // menutup koneksi ke database
     public static void closeDatabase() throws SQLException
     {
         db.closeConnection();
     }
-    
+    // mendapatkan id user dari username
      public static int getIdUser(String username) throws ClassNotFoundException, SQLException
     {
         int user=0;
@@ -47,6 +47,7 @@ public class ListTask {
       //  System.out.println("id_user ="+user);
         return user;
     }
+     // mendapatkan username dari id user
      public static String getUsernameUser(int id_user) throws ClassNotFoundException, SQLException
      {
          String temp = null;
@@ -60,6 +61,7 @@ public class ListTask {
         closeDatabase();
         return temp;
      }
+     // mendapatkan semua task yang dimiliki oleh user tertentu
      public static ArrayList<Task> getTaskAll(int id_user) throws ClassNotFoundException, SQLException
     {
         ArrayList<Task> creator = getTaskCreator(id_user);
@@ -70,6 +72,7 @@ public class ListTask {
         openDatabase();
         return temp;
     }
+     // mendapatkan kumpulan task dimana user tersebut berperan sebagai pembuat task
     public static ArrayList<Task> getTaskCreator(int id_user) throws ClassNotFoundException, SQLException
     {
         openDatabase();
@@ -86,7 +89,7 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
-    // mendapatkan task2 dimana user yang login sebagai assigneenya
+    // mendapatkan kumpulan task dimana user tersebut berperan sebagai assigneenya
     public static ArrayList<Task> getTaskAssignee(int id_user) throws ClassNotFoundException, SQLException
     {
         ArrayList<AssigneeTask> idTask = getIdAssignee(id_user);
@@ -114,7 +117,7 @@ public class ListTask {
         closeDatabase();
         return temp;
     }
-    // mendapatkan id task dimana user yang login menjadi assignee di task tersebut
+    // mendapatkan kumpulan id task dimana user berperan menjadi assignee di task tersebut
     public static ArrayList<AssigneeTask> getIdAssignee(int id_user) throws ClassNotFoundException, SQLException
     {
         openDatabase();
@@ -131,7 +134,7 @@ public class ListTask {
         return temp;
     }
    
-    // mendapatkan id user dari user2 yang termasuk assignee dalam suatu task tertentu
+    // mendapatkan kumpulan usernmae dari user yang termasuk assignee dalam suatu task tertentu
     public static String getAssigneeMember (int id_task ) throws ClassNotFoundException, SQLException
     {
         openDatabase();
@@ -182,6 +185,7 @@ public class ListTask {
         }
         return temp;
     }
+    // merubah status tugas
     public static void updateStatus(int id_task,String status) throws ClassNotFoundException, SQLException
     {
         openDatabase();
