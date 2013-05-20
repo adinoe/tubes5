@@ -41,4 +41,9 @@ public class ClientMessage {
         String temp = "post;"+id+";"+username+";"+value;
         return temp;
     }
+    
+    public static String update(String idTask, String status){
+        String temp = "update;"+idTask+";"+status;
+        return temp;
+    }
 }

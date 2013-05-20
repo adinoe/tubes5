@@ -167,12 +167,17 @@ public class TaskListPanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
                 AbstractButton abstractButton = (AbstractButton)actionEvent.getSource();
                     boolean selected = abstractButton.getModel().isSelected();
+                    ClientBox c = new ClientBox();
                     if(actionEvent.getActionCommand().equals("status"+id)){
                         if(selected == true){
                             //kirim pesan id x diubah menjadi status Completed
+                            String m = c.run("localhost",25000, ClientMessage.update(id, "Completed"));
+                            System.out.println(m);
                         }
                         else{
                             //kirim pesan id x diubah menjadi status Uncompleted
+                            String m = c.run("localhost",25000, ClientMessage.update(id, "Uncompleted"));
+                            System.out.println(m);
                         }
                     }
                     System.out.println("Selected = "+selected);

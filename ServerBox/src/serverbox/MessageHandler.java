@@ -57,6 +57,11 @@ public class MessageHandler {
             //action sync task
             message = "sync";
         }
+        else if(l.get(0).equals("update")){
+            int t = Integer.parseInt(l.get(1).toString());
+            ListTask.updateStatus(t, l.get(2).toString());
+            message = "update";
+        }
         return message;
     }
 }
