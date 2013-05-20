@@ -108,7 +108,7 @@ public class ListTask {
             while(rs.next())
             {
                Task cmt = null;
-               cmt=new Task(tempIdTask,id_user,rs.getString("title"),rs.getString("deadline"), rs.getString("description"), rs.getString("tags"),rs.getString("status"),rs.getInt("id_category"));
+               cmt=new Task(tempIdTask,rs.getInt("id_user"),rs.getString("title"),rs.getString("deadline"), rs.getString("description"), rs.getString("tags"),rs.getString("status"),rs.getInt("id_category"));
                temp.add(cmt);
                System.out.println("task = "+temp.get(i).getTitle());
             }

@@ -5,6 +5,7 @@
 package clientbox;
 
 import java.awt.Component;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,7 +17,10 @@ public class ClientMain{
     public static JFrame frame;
     public static void changePanel(Component p){
         frame.add(p);
-        frame.setSize(400, 400);
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight());  
+        frame.setSize(xSize, ySize);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

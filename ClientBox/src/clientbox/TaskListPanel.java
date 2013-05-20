@@ -6,6 +6,7 @@ package clientbox;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class TaskListPanel extends javax.swing.JPanel {
     private ArrayList<JLabel> title = new ArrayList<JLabel>();
     private ArrayList<JLabel> deadline = new ArrayList<JLabel>();
     private ArrayList<JLabel> description = new ArrayList<JLabel>();
+    private ArrayList<JLabel> tags = new ArrayList<JLabel>();
+    private ArrayList<JLabel> creator = new ArrayList<JLabel>();
+    private ArrayList<JLabel> assignee = new ArrayList<JLabel>();
+    private ArrayList<JLabel> category = new ArrayList<JLabel>();
     private ArrayList<JLabel> header = new ArrayList<JLabel>();
     
     ArrayList<String> rowMessage = new ArrayList<String>();
@@ -66,6 +71,10 @@ public class TaskListPanel extends javax.swing.JPanel {
                 title.add(new JLabel(dataMessage.get(i).get(1)));
                 deadline.add(new JLabel(dataMessage.get(i).get(2)));
                 description.add(new JLabel(dataMessage.get(i).get(3)));
+                tags.add(new JLabel(dataMessage.get(i).get(5)));
+                category.add(new JLabel(dataMessage.get(i).get(6)));
+                creator.add(new JLabel(dataMessage.get(i).get(7)));
+                assignee.add(new JLabel(dataMessage.get(i).get(8)));
             //}
             //System.out.println("");
         }
@@ -74,19 +83,25 @@ public class TaskListPanel extends javax.swing.JPanel {
         
         JCheckBox checkBox = new JCheckBox("Test"); 
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new GridLayout(0, 4, 10, 10));
+        jPanel.setLayout(new GridLayout(0, 8, 10, 10));
         
         JScrollPane checkBoxPanel = new JScrollPane(jPanel);
         header.add(new JLabel("Title"));
         header.add(new JLabel("Deadline"));
         header.add(new JLabel("Description"));
+        header.add(new JLabel("Creator"));
+        header.add(new JLabel("Assignee"));
+        header.add(new JLabel("Tags"));
+        header.add(new JLabel("Category"));
         header.add(new JLabel("Status"));
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < 8; i++){
             header.get(i).setBackground(Color.red);
             jPanel.add(header.get(i));
         }
-        
-        checkBoxPanel.setBounds(20, 80, 900, 550);
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight()); 
+        checkBoxPanel.setBounds(20, 80, xSize-60, 550);
         // Create columns names
 	/*
         for(int i = 0; i < 20; i++){
@@ -118,6 +133,18 @@ public class TaskListPanel extends javax.swing.JPanel {
             description.get(i).setBounds(20,30*i,200,30);
             description.get(i).setVisible(true);
             jPanel.add(description.get(i));
+            creator.get(i).setBounds(20,30*i,200,30);
+            creator.get(i).setVisible(true);
+            jPanel.add(creator.get(i));
+            assignee.get(i).setBounds(20,30*i,200,30);
+            assignee.get(i).setVisible(true);
+            jPanel.add(assignee.get(i));
+            tags.get(i).setBounds(20,30*i,200,30);
+            tags.get(i).setVisible(true);
+            jPanel.add(tags.get(i));
+            category.get(i).setBounds(20,30*i,200,30);
+            category.get(i).setVisible(true);
+            jPanel.add(category.get(i));
             jPanel.add(c.get(i));
             
         }
@@ -197,13 +224,10 @@ public class TaskListPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jButton1.setText("Sync");
+        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton2.setText("Log Out");
@@ -216,13 +240,6 @@ public class TaskListPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel1.setText("List Task");
 
-        jCheckBox1.setText("jCheckBox1");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,12 +247,8 @@ public class TaskListPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -243,10 +256,7 @@ public class TaskListPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(403, Short.MAX_VALUE))
         );
@@ -265,15 +275,8 @@ public class TaskListPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("test test test");
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

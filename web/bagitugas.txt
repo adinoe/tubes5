@@ -1,0 +1,3 @@
+agung : dashboard, search, header
+yudhis : add task, view task, task detail
+adi : profile, halaman utama
